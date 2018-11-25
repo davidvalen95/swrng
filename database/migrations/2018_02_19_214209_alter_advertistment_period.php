@@ -15,7 +15,6 @@ class AlterAdvertistmentPeriod extends Migration
     {
         Schema::table('advertistment_period', function (Blueprint $table) {
             //
-            $table->string("price");
         });
     }
 
@@ -28,7 +27,6 @@ class AlterAdvertistmentPeriod extends Migration
     {
         Schema::table('advertistment_period', function (Blueprint $table) {
             //
-            $table->dropColumn(['price']);
         });
     }
 }

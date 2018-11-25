@@ -35,7 +35,7 @@ class AlterRoomCapacities2 extends Migration
             //
             $table->string("function");
 
-            $table->dropColumn(["capacityClass","capacityUShape","capacityTheater","roomFunction"]);
+            $table->dropColumn(["capacityClass","capacityUShape","capacityTheatre","roomFunction"]);
         });
     }
 }
