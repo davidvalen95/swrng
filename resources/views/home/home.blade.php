@@ -114,10 +114,13 @@
                                     $function->value =  Illuminate\Support\Facades\Input::get('search')["roomFunction"];
 
                                     $function->isButton = true;
+                                    $function->placeholder = "Filter fungsi ruang";
+
                                     $function->setInputTypeSelect([],\App\Model\FungsiRuang::all());
-                                    $city = new CForm("Kota","search[city]");
+                                    $city = new CForm("Filter Kota","search[city]");
                                     $city->value =  Illuminate\Support\Facades\Input::get('search')['city'];
                                     $city->isButton = true;
+                                    $city->placeholder = "Kota";
                                     $city->setInputTypeSelect(["surabaya","jakarta","medan"]);
 
 

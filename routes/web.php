@@ -37,6 +37,8 @@ Route::prefix('member')->group(function(){
    Route::get('edit-ruangan/{id}',"MemberController@getEditMyRoom")->name('get.editMyRoom')->middleware('auth');
    Route::post('tambah-ruangan',"MemberController@postAddRoom")->name('post.addRoom')->middleware('auth');
    Route::get('detail-ruangan/{id}',"MemberController@getMyRoomDetail")->name('get.myRoomDetail')->middleware('auth');
+   Route::get('member/profile',"MemberController@getMyProfile")->name('get.myProfile')->middleware('auth');
+   Route::post('member/profile/update',"MemberController@postEditProfile")->name('post.editProfile')->middleware('auth');
 
    Route::prefix('iklan')->group(function(){
        Route::get('daftar',"AdvertisementController@getMyAdvertisement")->name('get.myAdvertisement')->middleware('auth');

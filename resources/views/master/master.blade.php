@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{publicAsset("css/framework/style.css")}}">
     <link rel="stylesheet" href="{{publicAsset("plugins/easy-autocomplete/easy-autocomplete.min.css")}}">
     <link rel="stylesheet" href="{{publicAsset("plugins/magnific-popup/magnific-popup.css")}}">
+    <link rel="stylesheet" href="{{publicAsset("plugin/pretyPhoto/prettyPhoto.css")}}">
 
     <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 
@@ -57,6 +58,9 @@
              margin-left: 0 !important;;
         }
     </style>
+
+
+
 </head>
 <body>
 <!--[if lt IE 7]>
@@ -83,6 +87,7 @@
 <script src="{{publicAsset("plugins/easy-autocomplete/jquery.easy-autocomplete.min.js")}}"></script>
 <script src="{{publicAsset("plugins/magnific-popup/jquery.magnific-popup.min.js")}}"></script>
 <script src="{{publicAsset("js/framework/main.js")}}"></script>
+<script src="{{publicAsset("plugin/pretyPhoto/jquery.prettyPhoto.js")}}"></script>
 <script src="{{publicAsset("js/main.js")}}"></script>
 @yield('js')
 </body>

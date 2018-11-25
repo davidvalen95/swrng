@@ -24,7 +24,7 @@
                         @if($photo)
                             {{--{{$photo->nameLg}}--}}
 
-                        <a class="image-link" href="{{$photo->getLarge()}}"><div style="max-width:450px;max-height:200px; overflow:hidden; float:left; padding-right: 16px;">
+                        <a rel="prettyPhoto[gallery]" href="{{$photo->getLarge()}}"><div style="max-width:450px;max-height:200px; overflow:hidden; float:left; padding-right: 16px;">
                             <img class="img-responsive" alt="" src="{{$photo->getSmall()}}" />
 
                             </div></a>

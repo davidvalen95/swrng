@@ -271,22 +271,23 @@ class UserController extends Controller
     }
 
     public function postResendVerification(Request $request){
-        $post = (object)$request;
+        $post = (object)$request->all();
         $this->validate($request,[
             "email"=>"required",
         ]);
 
+//        debug($post);
 
-        $user = User::whereEmail($post->email)->where('reset',$post->reset)->first();
+        $user = User::whereEmail($post->email)->first();
 
         if($user){
             $eol = PHP_EOL;
-            Mail::to($user->email)->queue(new TextEmail("Halo $user->name{$eol}Please click here to verify your email{$eol}". "<a href='>" .
+            Mail::to($user->email)->queue(new TextEmail("Halo $user->name{$eol}Please click this code below to verify your email{$eol}". "<a href='" .
                 route('get.verify',
                     [
                         "email"=>$user->email,
                         "verifyKey"=>$user->verifyKey,
-                    ]). "'>Verifikasi klik disini</a>" ,"Verifikasi Email"));
+                    ]). "'>Click Here $user->verifyKey</a>" ,"Verifikasi Email"));
 
 
             setSuccess("Kode Verifikasi telah dikirim ke email anda");

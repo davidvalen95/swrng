@@ -19,7 +19,8 @@ class RoomController extends Controller
     public function getRoomDetail($id)
     {
 
-        $room = Room::where('id',$id)->where('status','=','ap')->first();
+        //where('status','=','ap')
+        $room = Room::where('id',$id)->first();
         if (!$room) {
             setDanger("Ruangan tidak ditemukan");
             return redirect("/");
@@ -30,7 +31,7 @@ class RoomController extends Controller
         $data["room"] = $room;
         $data["isMyRoom"] = Auth::check() && Auth::user()->id == $room->user_id;
         /** @var \App\Model\PageTitle $pageTitle */
-        $data['title'] = "Detail ruangan $room->buildingName";
+        $data['title'] = ucwords("$room->city $room->roomName $room->buildingName");
         $data['description'] = "Ruangan untuk disewakan $room->buildingName, $room->roomName. Untuk keperluan $room->roomFunction, di $room->city, $room->address";
 //        debug($data);
 

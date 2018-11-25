@@ -35,18 +35,26 @@
                         <div class='top'>
                             <div class='row'>
                                 <div class='left'>
-                                    <figure>
-                                        <a class="image-link" rel="prettyPhoto[gallery]" href="{{$room->getPhotos->where('isMain',true)->first()->getLarge()}}">
 
-                                            <div style="max-height: 450px">
-                                                <img class='img-responsive' src="{{$room->getPhotos->where('isMain',true)->first()->getSmall()}}" alt="" />
-                                            </div>
+                                    <figure>
+                                        {{--<a class="image-link" rel="prettyPhoto[gallery]" href="{{$room->getPhotos->where('isMain',true)->first()->getLarge()}}">--}}
+
+                                            {{--<div style="max-height: 450px">--}}
+                                                {{--<img class='img-responsive' src="{{$room->getPhotos->where('isMain',true)->first()->getSmall()}}" alt="" />--}}
+                                            {{--</div>--}}
+                                        {{--</a>--}}
+
+                                        <a rel="prettyPhoto[gallery]" href="{{$room->getPhotos->where('isMain',true)->first()->getLarge()}}">
+                                            <img src="{{$room->getPhotos->where('isMain',true)->first()->getSmall()}}" alt="" />
                                         </a>
 
                                         <div class='banner'></div>
                                     </figure>
                                     <div class='title-line'>
                                         <div class='pull-left'>
+                                            @if($room->status != 'ap')
+                                            <p style="color: tomato">*Ruangan belum disetujui oleh admin sehingga tidak muncul dalam halaman utama</p><br/>
+                                            @endif
                                             <h2>{{$room->roomName}}</h2> <br />
                                             <h2>{{$room->buildingName}}</h2> <br />
                                             <h2>{{$room->roomFunction}}</h2> <br />
@@ -136,21 +144,23 @@
                                         @foreach($room->getPhotos->where('isMain',false)->all() as $photo)
 
                                             <div class='line'>
-                                                {{--<figure>--}}
-                                                    {{--<a class="image-link" rel="prettyPhoto[gallery]" href="{{$photo->getLarge()}}">--}}
-
-                                                    {{--<div style="max-height: 90px; overflow: hidden;">--}}
-                                                        {{--<img class="img-responsive" src="{{$photo->getSmall()}}" alt="" />--}}
-
-                                                    {{--</div>--}}
-                                                    {{--</a>--}}
-                                                {{--</figure>--}}
-
                                                 <figure>
                                                     <a rel="prettyPhoto[gallery]" href="{{$photo->getLarge()}}">
-                                                        <img src="{{$photo->getSmall()}}" alt="">
+
+                                                    <div style="max-height: 90px; overflow: hidden;">
+                                                        <img class="img-responsive" src="{{$photo->getSmall()}}" alt="" />
+
+                                                    </div>
                                                     </a>
                                                 </figure>
+
+
+
+                                                {{--<figure>--}}
+                                                    {{--<a class="image-link"  rel="prettyPhoto[gallery]" href="{{$photo->getLarge()}}">--}}
+                                                        {{--<img src="{{$photo->getSmall()}}" alt="">--}}
+                                                    {{--</a>--}}
+                                                {{--</figure>--}}
 
                                             </div>
                                         @endforeach

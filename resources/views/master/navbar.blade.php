@@ -6,7 +6,7 @@
 
 
 {{--</div>--}}
-<section id='hidden-header' style="height: 506px; overflow:hidden;">
+<section id='hidden-header' style="padding-top: 0px; overflow-y:scroll;">
     <section class='container'>
         <section class='row contact-form'>
 
@@ -67,7 +67,7 @@
         </section>
 
         @if(!Auth::check())
-        <section class='row profile-form'>
+        <section class='row profile-form' style="padding-top: 0; overflow: hidden;">
             <div class='span6'>
                 <div class='login-form top-form'>
                     <h2>Login</h2>
@@ -96,8 +96,27 @@
 
                                 </div>
 
-                                <div class='span3'>
+                                <div class=''>
                                     <input type="submit" name='submit' value='Reset Password' class='btn btn-primary'/>
+
+                                </div>
+                            </form>
+                        </div>
+
+                        <div>
+                            <h2 style="margin-top: 16px;">Kirim Ulang Verifikasi</h2>
+
+                            <form method="POST" action="{{route("post.resendVerification")}}"  class='row'>
+                                {{csrf_field()}}
+                                <div class='span6'>
+                                    <input type="email" class='input-block-level' name='email' placeholder="Email"/>
+
+                                </div>
+                                <div class="span3">
+
+                                </div>
+                                <div class='span3'>
+                                    <input type="submit" name='submit' value='Resend Verification' class='btn btn-primary'/>
 
                                 </div>
                             </form>
@@ -139,28 +158,13 @@
                                     {{--<option value="{{$city->name}}">{{ucwords($city->name)}}</option>--}}
                                 {{--@endforeach--}}
                             {{--</select>--}}
-                            <input placeholder="Kota" id="city" name="city" />
-                            <input  required type="submit" name='submit' value='Register' class='btn btn-primary'/>
+                            <input placeholder="Kota" id="city" name="city" style="width: 100%;" />
+                            <input style="margin-top: 12px" required type="submit" name='submit' value='Register' class='btn btn-primary'/>
                         </div>
                     </form>
 
 
-                    <h2 style="margin-top: 16px;">Kirim Ulang Verifikasi</h2>
 
-                    <form method="POST" action="{{route("post.resendVerification")}}"  class='row'>
-                        {{csrf_field()}}
-                        <div class='span6'>
-                            <input type="email" class='input-block-level' name='email' placeholder="Email"/>
-
-                        </div>
-                        <div class="span3">
-
-                        </div>
-                        <div class='span3'>
-                            <input type="submit" name='submit' value='Resend Verification' class='btn btn-primary'/>
-
-                        </div>
-                    </form>
 
                 </div>
             </div>
@@ -280,11 +284,14 @@
                                 <a href="{{route('get.advertisementPayment')}}">Konfirmasi pembayaran Iklan</a>
 
                             </li>
-                            <span style="display:inline-block;color:rgba(255,255,255,0.5);font-weight: bold;padding: 16px 8px 0px" class="custom-tooltip">{{Auth::user()->name}}</span>
+                            <li><a href="{{route('get.myProfile')}}">{{Auth::user()->name}}</a>
 
-                            <form style="display:inline-block" method="POST" action="{{route('logout')}}">
+                            </li>
+                            <span style="display:inline-block;color:rgba(255,255,255,0.5);font-weight: bold;padding: 16px 8px 0px" class="custom-tooltip"></span>
+
+                            <form style="margin: 7px 0 0 0;display:inline-block" method="POST" action="{{route('logout')}}">
                                 {{csrf_field()}}
-                                <input style="background:transparent; border:none;shadown:none;outline: none; color: tomato;font-weight: bold;margin-top: -4px;" type="submit" value="logout">
+                                <input style="background:transparent; height: 100%; border:none;shadown:none;outline: none; color: tomato;font-weight: bold;margin-top: -4px;" type="submit" value="logout">
                             </form>
 
                         @endif
@@ -309,8 +316,11 @@
         </section>
     </section>
 </header>
+
 {{--{{json_encode(Session::get("dangerNotification"))}}--}}
 
+
+@if($errors->any() || Session::has('dangerNotification') )
     <div class="alert alert-danger text-center">
         <ul>
             @if ($errors->any())
@@ -328,13 +338,18 @@
 
     </div>
 
+@endif
+
+
+@if(Session::has('successNotification'))
 <div class="alert alert-success text-center">
     <ul>
         {{--{{json_encode(Session::get("dangerNotification"))}}--}}
-        @if(Session::has('successNotification'))
+
             <li>{{Session::get('successNotification')}}</li>
-        @endif
+
 
     </ul>
 </div>
+@endif
 

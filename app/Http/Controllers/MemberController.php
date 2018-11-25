@@ -42,6 +42,28 @@ class MemberController extends Controller
         return view('member.room.master',$data);
     }
 
+    public function getMyProfile(){
+
+        $data = [];
+
+        $data['forms'] = $this->setupProfileForm();
+
+        $data['title'] = "Edit Profile | Sewa Ruang";
+        $data['description'] = "";
+        return view('member.editProfile.master',$data);
+    }
+
+    public function postEditProfile(Request $request){
+
+        $user = Auth::user();
+
+        $user->update($request->all());
+        $user->save();
+
+        setSuccess("Profile berhasil di-update");
+        return redirect()->back();
+    }
+
     public function getMyAdvertisement(){
         $data = [];
         $data['active'] = 0;
@@ -130,6 +152,8 @@ class MemberController extends Controller
 
 
             $room->save();
+//            return redirect()->back();
+
 
 
         }else if($post->cmd =='edit' && $post->id != '-1' ){
@@ -213,6 +237,23 @@ class MemberController extends Controller
 
 
 
+
+    public function setupProfileForm(){
+
+        //'name', 'email', 'password',"city","telephone","isVerified","verifyKey", "reset",
+        $user = Auth::user();
+
+        $name = new CForm("name",'name');
+        $name->setModel($user);
+        $name->isRequired = true;
+
+        $telephone = new CForm("telephone",'telephone');
+        $telephone->setModel($user);
+        $telephone->isRequired = true;
+
+        return [$name, $telephone];
+
+    }
 
     public function setupNewForms( Room  $model=null){
 

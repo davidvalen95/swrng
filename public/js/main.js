@@ -24,4 +24,9 @@ $(document).ready(function(){
 
     $('.image-link').magnificPopup({type:'image'});
     // $(".easy-autocomplete").css('width','100%');
+
+    jQuery("a[rel^='prettyPhoto']").prettyPhoto({
+        social_tools: false,
+        theme: 'light_square'
+    });
 })

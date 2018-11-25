@@ -80,6 +80,7 @@ class CForm
     public function setInputTypeSelect($values = [], Illuminate\Database\Eloquent\Collection $model = null)
     {
 //        $this->placeholder = "Pilih $this->label";
+//        $values[]="Pilih /"
         if ($model != null) {
 
             foreach ($model as $currentModel) {
@@ -88,11 +89,12 @@ class CForm
         }
 //         $this->selectValues = $values;
 
-        $option = "";
+        $option = "              ";
 
         foreach ($values as $value) {
             $isSelected = $this->value == $value ? "selected" : "";
             $ucValue    = ucwords($value);
+//            $option .= "<option $isSelected ue=''>Pilih $this->placeholder</option>";
             $option     .= "
                 <option $isSelected value='$value'>$ucValue</option>
              ";

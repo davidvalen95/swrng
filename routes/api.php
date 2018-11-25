@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 */
 
 if(IS_SERVER){
-    header("Access-Control-Allow-Origin: https://sewaruang.id/admin");
+    header("Access-Control-Allow-Origin: https://sewaruang.id");
 
 }else{
     header("Access-Control-Allow-Origin: http://localhost:4200");

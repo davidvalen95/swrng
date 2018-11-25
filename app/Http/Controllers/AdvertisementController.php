@@ -145,14 +145,18 @@ class AdvertisementController extends Controller
         $this->middleware('auth');
         $user = Auth::user();
         $post = (object)$request->all();
-        $post->targetCity =             $post->targetCity ? strtolower($post->targetCity) : "xx";
+        $request->merge(['targetCity' => strtolower($request->get('targetCity') ?? "xx")]);
 
 
 
         $this->validate($request,[
            'photo'=>'max:5000',
-           'advertisementType'=>'required'
+           'advertisementType'=>'required',
+           'targetCity'=> 'exists:city,name'
         ]);
+
+        $post->targetCity =             $post->targetCity ? strtolower($post->targetCity) : "xx";
+
 
         $advertisement = null;
         if ($post->cmd == 'add') {
@@ -195,6 +199,7 @@ class AdvertisementController extends Controller
             $advertisement->viewed = 0;
             $advertisement->status = "pa";
             $advertisement->getUser()->associate($user);
+            $advertisement->getAdvertisementType()->associate($advertisementType);
             $advertisement->save();
 
             if ($request->hasFile('photo')) {
