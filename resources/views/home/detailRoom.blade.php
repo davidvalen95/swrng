@@ -135,6 +135,11 @@
 
 
                                     </table>
+
+                                    @if($room->latitude && $room->longitude)
+                                        <iframe src="https://www.google.com/maps/embed?q=-37.866963,144.980615" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+                                    @endif
                                 </div>
                                 <div class='right'>
                                     <h3>Gallery <span>({{$room->getPhotos->where('isPrimary','false')->count()}} photos)</span></h3>

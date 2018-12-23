@@ -73,6 +73,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Room whereMainPriceUnit($value)
  * @property string|null $statusReason
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Room whereStatusReason($value)
+ * @property string|null $latitude
+ * @property string|null $longitude
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Room whereLatitude($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Room whereLongitude($value)
  */
 class Room extends Model
 {

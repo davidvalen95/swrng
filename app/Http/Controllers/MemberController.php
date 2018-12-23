@@ -416,6 +416,10 @@ class MemberController extends Controller
         $longitude = New CForm("Location coordinate Longitude","latitude");
         $longitude->setModel($model);
 
+        $longitude->cssContainer = "display:inline-block;margin-left:6px;";
+        $latitude->cssContainer = "display:inline-block;margin-left:6px;";
+
+
 
         return  array_merge([$cmd,$id, $roomName, $buildingName, $address, $city,$function, $titleCapacity, $capacityClass, $capacityUShape, $capacityTheatre, $area,$totalRoom,$facility,$caterings,$parking,$providerTelephone,$mainPrice,$mainPriceUnit, $latitude, $longitude],[$description,$photo],
             $additionalForm);
