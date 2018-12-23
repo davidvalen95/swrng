@@ -100,7 +100,9 @@ class Room extends Model
         "capacityTheatre",
         "providerTelephone",
         "mainPriceUnit",
+        "latitude",
         "statusReason",
+        "longitude",
     ];
     protected $dates = ['created_at'];
 

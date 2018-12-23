@@ -5,8 +5,8 @@ namespace App;
 use App\Mail\TextEmail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Mail;
 use Laravel\Passport\HasApiTokens;
-use Mail;
 
 /**
  * App\User
