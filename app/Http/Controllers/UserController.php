@@ -58,13 +58,16 @@ class UserController extends Controller
 //        $isAuth = Auth::attempt(["email"=>$user->email,"password"=>Hash::make($user->password)]);
 
         $eol = PHP_EOL;
-        Mail::to($user->email)->queue(new TextEmail("Halo $user->name{$eol}Please click here to verify your email{$eol}". "<a href='>" .
-            route('get.verify',
-                [
-                    "email"=>$user->email,
-                    "verifyKey"=>$user->verifyKey,
-                ]). "'>Verifikasi klik disini</a>" ,"Verifikasi Email"));
 
+        $link = route('get.verify',
+            [
+                "email"=>$user->email,
+                "verifyKey"=>$user->verifyKey,
+            ]);
+        $contentEmail = "Halo $user->name{$eol}Please click here to verify your email{$eol}". "<a href='$link'>Verifikasi klik disini</a>${eol}atau $link";
+        $subjectEmail = "Verifikasi Email";
+
+        $user->sendEmail($subjectEmail, $contentEmail);
 
         setSuccess("Register Succeed. We sent you verification email. Please verify your email.");
 
@@ -194,7 +197,7 @@ class UserController extends Controller
 
             $url = route('get.resetPassword',['reset'=>$user->reset, "email"=>$user->email]);
 //            $url = "";
-            $textEmail = new TextEmail("Klik link di bawah ini untuk merubah passowrd ".PHP_EOL." {$url} ", "Reset Password");
+            $textEmail = new TextEmail("<a href='$url'>Klik di sini</a>untuk merubah password ".PHP_EOL."atau {$url} ", "Reset Password");
             Mail::to($user->email)->send($textEmail);
 
             setSuccess("Kode reset password telah dikirim ke email anda. Silahkan reset password anda melalui link pada email");

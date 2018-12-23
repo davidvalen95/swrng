@@ -408,12 +408,13 @@ class AdvertisementController extends Controller
                     $message .= "<p>Pesan tambahan <br/>$post->statusReason</p>";
                 }
 
+                /** @var User $userAdvertisement */
                 $userAdvertisement = $advertisement->getUser;
                 $response->data->email = $message;
                 try {
 
                     if(IS_SERVER){
-                        Mail::to($userAdvertisement->email)->queue(new TextEmail($message,$subject));
+                        $userAdvertisement->sendEmail($subject,$message);
 
                     }
 

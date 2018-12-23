@@ -2,9 +2,11 @@
 
 namespace App;
 
+use App\Mail\TextEmail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
+use Mail;
 
 /**
  * App\User
@@ -89,6 +91,16 @@ class User extends Authenticatable
         }else{
             return publicAsset($path);
         }
+
+    }
+
+
+    public function sendEmail($subject, $content){
+
+        Mail::to($this->email)->queue(new TextEmail($content ,$subject));
+
+
+
 
     }
 }
