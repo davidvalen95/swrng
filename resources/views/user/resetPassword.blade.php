@@ -14,7 +14,7 @@
     <div class="span8 center-block inner " style="float:none;background: white; padding: 20px; margin: 20px auto; display: block;" >
 
 
-        <form enctype="multipart/form-data" action="{{route('post.reset-password')}}" method="post">
+        <form enctype="multipart/form-data" action="{{route('post.resetPassword')}}" method="post">
             {{csrf_field()}}
 
 
