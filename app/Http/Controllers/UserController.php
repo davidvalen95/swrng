@@ -197,7 +197,7 @@ class UserController extends Controller
 
             $url = route('get.resetPassword',['reset'=>$user->reset, "email"=>$user->email]);
 //            $url = "";
-            $textEmail = new TextEmail("<a href='$url'>Klik di sini</a>untuk merubah password ".PHP_EOL."atau {$url} ", "Reset Password");
+            $textEmail = new TextEmail("<a href='$url'>Klik di sini</a> untuk merubah password ".PHP_EOL."atau {$url} ", "Reset Password");
             Mail::to($user->email)->send($textEmail);
 
             setSuccess("Kode reset password telah dikirim ke email anda. Silahkan reset password anda melalui link pada email");
