@@ -138,8 +138,7 @@
 
                                     @if($room->latitude && $room->longitude)
                                         <iframe
-                                                width="300"
-                                                height="170"
+                                                style="width: 100%; height: 350px;"
                                                 frameborder="0"
                                                 scrolling="no"
                                                 marginheight="0"
