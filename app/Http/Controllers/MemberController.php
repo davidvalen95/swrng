@@ -416,8 +416,8 @@ class MemberController extends Controller
         $longitude = New CForm("Location coordinate Longitude","longitude");
         $longitude->setModel($model);
 
-        $longitude->cssContainer = "display:inline-block;margin-left:6px;";
-        $latitude->cssContainer = "display:inline-block;margin-left:6px;";
+        $longitude->cssContainer = "max-width: 250px;";
+        $latitude->cssContainer = "max-width: 250px";
 
 
 
