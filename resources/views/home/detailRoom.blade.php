@@ -137,8 +137,16 @@
                                     </table>
 
                                     @if($room->latitude && $room->longitude)
-                                        <iframe src="https://www.google.com/maps/embed?q=-37.866963,144.980615" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-
+                                        <iframe
+                                                width="300"
+                                                height="170"
+                                                frameborder="0"
+                                                scrolling="no"
+                                                marginheight="0"
+                                                marginwidth="0"
+                                                src="https://maps.google.com/maps?q={{$room->latitude}},{{$room->longitude}}&hl=es;z=14&amp;output=embed"
+                                        >
+                                        </iframe>
                                     @endif
                                 </div>
                                 <div class='right'>
